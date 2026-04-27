@@ -2,7 +2,7 @@
     --bg-dark: #0f172a;
     --sidebar-bg: #1e293b;
     --accent: #38bdf8;
-    --canvas-bg: #f8fafc;
+    --canvas-bg: #f1f5f9;
     --text-main: #f1f5f9;
 }
 
@@ -35,31 +35,32 @@ body {
 }
 
 .toolbox {
-    margin-top: 30px;
+    margin-top: 20px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 15px;
+    gap: 12px;
 }
 
 .tool-item {
     background: #334155;
-    padding: 15px;
-    border-radius: 12px;
+    padding: 12px;
+    border-radius: 10px;
     text-align: center;
     cursor: grab;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     border: 1px solid transparent;
+    font-size: 0.85rem;
 }
 
 .tool-item:hover {
     background: #475569;
     border-color: var(--accent);
-    transform: translateY(-3px);
+    transform: scale(1.05);
 }
 
 .tool-item .icon {
     display: block;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     margin-bottom: 5px;
     color: var(--accent);
 }
@@ -68,70 +69,87 @@ body {
 .canvas-area {
     flex-grow: 1;
     background-color: var(--canvas-bg);
-    padding: 40px;
+    padding: 30px;
     overflow-y: auto;
     position: relative;
 }
 
 .canvas-nav {
-    position: absolute;
-    top: 10px;
-    right: 20px;
+    position: sticky;
+    top: -10px;
+    margin-bottom: 20px;
+    z-index: 5;
+    text-align: right;
 }
 
 .canvas-dropzone {
-    min-height: 100%;
+    min-height: 90vh;
     background: white;
-    border-radius: 8px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-    padding: 50px;
-    transition: border 0.3s ease;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    padding: 20px;
+    transition: all 0.3s ease;
     border: 2px dashed transparent;
 }
 
 .canvas-dropzone.drag-over {
     border: 2px dashed var(--accent);
-    background-color: #f0f9ff;
+    background-color: #e0f2fe;
 }
 
 .empty-state {
     text-align: center;
     color: #94a3b8;
-    margin-top: 100px;
+    padding-top: 150px;
 }
 
-/* Dropped Elements Animation */
+/* Dropped Elements */
 .dropped-item {
     position: relative;
-    margin-bottom: 20px;
-    animation: fadeIn 0.4s ease forwards;
-    group: hover;
+    margin-bottom: 10px;
+    animation: slideIn 0.3s ease-out;
+    padding: 5px;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
 }
 
 .dropped-item:hover {
     outline: 2px solid var(--accent);
-    border-radius: 4px;
+    outline-offset: 4px;
 }
 
 .delete-btn {
     position: absolute;
-    top: -10px;
-    right: -10px;
+    top: 5px;
+    right: 5px;
     background: #ef4444;
     color: white;
     border: none;
     border-radius: 50%;
-    width: 25px;
-    height: 25px;
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
     cursor: pointer;
     display: none;
+    z-index: 100;
 }
 
 .dropped-item:hover .delete-btn {
     display: block;
+}
+
+/* Image Upload Specifics */
+.img-placeholder {
+    width: 100%;
+    min-height: 200px;
+    background: #f1f5f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #cbd5e1;
+    border-radius: 8px;
+    cursor: pointer;
 }
